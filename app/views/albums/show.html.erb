@@ -4,6 +4,11 @@
 <h2>Artist:</h2>
   <%= link_to @album.band.name, band_url(@album.band) %>
 
+<h2>Type of Album</h2>
+
+  <%= @album.live_or_studio.capitalize %>
+  <br>
+
 <h2>Tracks</h2>
   <ul>
     <% @album.tracks.each do |track| %>

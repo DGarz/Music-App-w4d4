@@ -1,0 +1,48 @@
+<h1>Make a track</h1>
+
+<form action="<%= tracks_url %>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  
+  <label for="song_name">Song Name</label>
+  <input type="text"
+      name="track[song_title]"
+      value="<%= @track.song_title %>"
+      id="song_name">
+
+  <br><br>
+
+  <!--  maybe we don't put the album as a selection they have to add it to the al-->
+  <label for="album">Album</label>
+  <select name="track[album_id]">
+    <% Album.all.each do |album| %>
+      <option
+        value="<%=album.id%>"
+        <%= "selected" if album.id == @album_id %>
+        ><%=album.title%></option>
+      <% end %>
+  </select>
+
+  <br><br>
+
+  <label for="type_of_track">Bonus or Regular Track</label>
+  <br>
+  <input
+    type="radio"
+    name="track[bonus_or_regular]"
+    value="bonus"
+    <%="checked" if @track.bonus_or_regular == "bonus"%>>Bonus</input>
+
+  <input
+    type="radio"
+    name="track[bonus_or_regular]"
+    value="regular"
+    <%="checked" if @track.bonus_or_regular == "regular"%>>Regular</input>
+
+  <br><br>
+  <label for="song_lyrics">Lyrics</label>
+  <input type="textarea" name="track[lyrics]" value="<%= @track.lyrics %>" id="song_lyrics">
+
+  <br><br>
+  <input type="submit"  value="Write that track">
+  <br><br>
+</form>
